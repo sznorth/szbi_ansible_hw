@@ -32,3 +32,21 @@
       ansible.builtin.service:
         name: nginx
         state: restarted
+    
+    - name: Firewalld check
+      ansible.builtin.dnf:
+        name: firewalld
+        state: present
+
+    - name: Firewalld futás check
+      ansible.builtin.service:
+        name: firewalld
+        enabled: yes
+        state: started
+
+    - name: Allow HTTP
+      ansible.posix.firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: true
