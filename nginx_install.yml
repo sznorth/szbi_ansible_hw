@@ -26,13 +26,6 @@
         name: nginx
         enabled: yes
         state: started
-
-  handlers:
-    - name: Restart nginx
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
-    
     - name: Firewalld check
       ansible.builtin.dnf:
         name: firewalld
@@ -50,3 +43,9 @@
         permanent: true
         state: enabled
         immediate: true
+
+  handlers:
+    - name: Restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
